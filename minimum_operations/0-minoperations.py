@@ -1,18 +1,18 @@
 #!/usr/bin/python3
-'''Minimum Operations'''
+"""
+minimum operations
+"""
+
 
 def minOperations(n):
-    if n <= 1:
-        return n
-
-    dp = [0] * (n+1)
-    dp[1] = 1
-
-    for i in range(2, n+1):
-        dp[i] = i     # Paste i-1 times
-        for j in range(1, i):
-            dp[i] = min(dp[i], dp[j] + (i-j))  # Copy All + Paste i-j times
-
-    if dp[n] == 0:
-        return 0
-    return dp[n]
+    """
+    returns the fewest number of operation
+    """
+    a = 0
+    b = 2
+    while n > 1:
+        while n % b == 0:
+            a += b
+            n = n / b
+        b += 1
+    return a
